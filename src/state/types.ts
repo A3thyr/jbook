@@ -1,6 +1,33 @@
-export enum ActionType {
-  MOVE_CELL = 'move_cell',
-  DELETE_CELL = 'delete_cell',
-  INSERT_CELL_BEFORE = 'insert_cell_before',
-  UPDATE_CELL = 'update_cell',
+export type CellTypes = {
+  type: 'code' | 'text';
+};
+
+export type MoveCellProps = {
+  id: string;
+  direction: 'up' | 'down';
+};
+
+export type InsertCellProps = {
+  id: string | null;
+  type: CellTypes;
+};
+
+export type UpdateCellProps = {
+  id: string;
+  content: string;
+};
+
+export interface Cell {
+  id: string;
+  type: CellTypes;
+  content: string;
+}
+
+export interface CellsState {
+  loading: boolean;
+  error: string | null;
+  order: string[];
+  data: {
+    [key: string]: Cell;
+  };
 }
