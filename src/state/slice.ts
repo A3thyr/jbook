@@ -30,7 +30,7 @@ const firstSlice = createSlice({
 
       state.order = state.order.filter((id) => id !== action.payload);
     },
-    insertCellBefore(state, action: PayloadAction<InsertCellProps>) {
+    insertCellAfter(state, action: PayloadAction<InsertCellProps>) {
       const cell: Cell = {
         content: '',
         type: action.payload.type,
@@ -41,9 +41,9 @@ const firstSlice = createSlice({
       const index = state.order.findIndex((id) => id === action.payload.id);
 
       if (index < 0) {
-        state.order.push(cell.id);
+        state.order.unshift(cell.id);
       } else {
-        state.order.splice(index, 0, cell.id);
+        state.order.splice(index + 1, 0, cell.id);
       }
     },
     updateCell(state, action: PayloadAction<UpdateCellProps>) {
@@ -54,6 +54,6 @@ const firstSlice = createSlice({
   },
 });
 
-export const { moveCell, deleteCell, insertCellBefore, updateCell } = firstSlice.actions;
+export const { moveCell, deleteCell, insertCellAfter, updateCell } = firstSlice.actions;
 
 export default firstSlice.reducer;

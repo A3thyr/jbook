@@ -30,7 +30,7 @@ export const CodeCell: FC<CodeCellProps> = ({ cell }) => {
 
   return (
     <Resizable direction="vertical">
-      <div style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
+      <div style={{ height: 'calc(100% - 10px)', display: 'flex', flexDirection: 'row' }}>
         <Resizable direction="horizontal">
           <CodeEditor
             onChange={(value) => dispatch(updateCell({ id: cell.id, content: value }))}
