@@ -1,7 +1,3 @@
-export type CellTypes = {
-  type: 'code' | 'text';
-};
-
 export type MoveCellProps = {
   id: string;
   direction: 'up' | 'down';
@@ -9,7 +5,7 @@ export type MoveCellProps = {
 
 export type InsertCellProps = {
   id: string | null;
-  type: CellTypes;
+  type: 'code' | 'text';
 };
 
 export type UpdateCellProps = {
@@ -19,7 +15,7 @@ export type UpdateCellProps = {
 
 export interface Cell {
   id: string;
-  type: CellTypes;
+  type: 'code' | 'text';
   content: string;
 }
 
