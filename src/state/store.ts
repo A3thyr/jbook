@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import first, { insertCellAfter } from './slice';
+import bundlesSlice from './bundlesSlice';
 
 export const store = configureStore({
-  reducer: { first },
+  reducer: { first, bundlesSlice },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
