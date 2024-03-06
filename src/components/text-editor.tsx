@@ -12,7 +12,6 @@ interface TextEditorProps {
 const TextEditor: FC<TextEditorProps> = ({ cell }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [editing, setEditing] = useState(false);
-  const [value, setValue] = useState('# Header');
   const dispatch = useDispatch();
 
   useEffect(() => {
