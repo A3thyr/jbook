@@ -8,6 +8,7 @@ import { updateCell } from '../state/slice';
 import { createBundle } from '../state/asyncAction';
 import { useAppDispatch } from '../state/store';
 import { useTypedSelector } from '../hooks/use-typed-selector';
+import { useCumulativeCode } from '../hooks/use-cumulative-code';
 
 interface CodeCellProps {
   cell: Cell;
@@ -16,22 +17,25 @@ interface CodeCellProps {
 export const CodeCell: FC<CodeCellProps> = ({ cell }) => {
   const dispatch = useAppDispatch();
   const bundle = useTypedSelector((state) => state.bundlesSlice[cell.id]);
+  const cumulativeCode = useCumulativeCode(cell.id);
+
+  console.log(cumulativeCode);
 
   useEffect(() => {
     if (!bundle) {
-      dispatch(createBundle(cell.id, cell.content));
+      dispatch(createBundle(cell.id, cumulativeCode));
       return;
     }
 
     const timer = setTimeout(async () => {
-      dispatch(createBundle(cell.id, cell.content));
+      dispatch(createBundle(cell.id, cumulativeCode));
     }, 1000);
 
     return () => {
       clearTimeout(timer);
     };
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cell.id, cell.content, dispatch]);
+  }, [cell.id, cumulativeCode, dispatch]);
 
   return (
     <Resizable direction="vertical">
